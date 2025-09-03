@@ -7,6 +7,6 @@ class Game:
         self.background = pygame.image.load('assets/background.png')
         self.background_rect = self.background.get_rect()
         self.background_rect.x = 0
-        self.background_rect.y = pygame.display.get_surface().get_height() - self.background.get_height() // 2
-        self.player = Player(self.background)
+        self.background_rect.y = pygame.display.get_surface().get_height() - (self.background.get_height() // 2 - 3)
+        self.player = Player(self.background_rect.y)
         self.clock = pygame.time.Clock()
