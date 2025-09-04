@@ -10,27 +10,28 @@ class Player(pygame.sprite.Sprite):
         self.angle = 0
         self.rect = self.img.get_rect(bottomright=(0, self.background_y))
         self.initial_y = self.background_y
-        self.speed_x = 5
-        self.speed_y = 5
-        self.jump_strength = 10
+        self.velocity = 0
+        self.jump_strength = 20
         self.gravity_power = 10
         self.jump_finished = True
         self.on_jump = False
+        self.on_move = False
 
     def move(self):
-        if self.rect.right <= pygame.display.get_surface().get_width():
-            self.rect.right += self.speed_x
-            self.angle -= 10
-        else:
-            self.rect.right = 0
-        # Rotate from the original image and keep the center
-        self.img = pygame.transform.rotate(self.original_img, self.angle)
-        self.rect = self.img.get_rect(center=self.rect.center)
+        if self.on_move:
+            if self.rect.right <= pygame.display.get_surface().get_width():
+                self.rect.right += self.velocity
+                self.angle -= 10
+            else:
+                self.rect.right = 0
+            # Rotate from the original image and keep the center
+            self.img = pygame.transform.rotate(self.original_img, self.angle)
+            self.rect = self.img.get_rect(center=self.rect.center)
 
     def jump(self):
         self.jump_finished = False
         if self.on_jump:
-            if self.rect.top >= self.initial_y - 180:
+            if self.rect.top >= self.initial_y - 250:
                 self.rect.y -= self.jump_strength
             else:
                 self.on_jump = False

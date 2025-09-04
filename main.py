@@ -19,15 +19,25 @@ while running:
     game.screen.blit(game.bird.img, game.bird.rect)
     game.player.update()
     game.bird.update()
+    game.check_collision()
 
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                if game.player.jump_finished: game.player.on_jump = True
-
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                if game.player.jump_finished:
+                    game.player.on_jump = True
+            if event.key == pygame.K_RIGHT:
+                game.player.velocity = 5
+                game.player.on_move = True
+            elif event.key == pygame.K_LEFT:
+                game.player.velocity = -5
+                game.player.on_move = True
+        elif event.type == pygame.KEYUP:
+            game.player.on_move = False
+            game.player.speed = 0
     # flip() the display to put your work on screen
     pygame.display.flip()
 

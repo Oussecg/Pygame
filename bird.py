@@ -7,7 +7,7 @@ class Bird(pygame.sprite.Sprite):
         self.original_img = pygame.image.load('assets/Bird.png').convert_alpha()
         self.original_img = pygame.transform.scale(self.original_img, (50, 50))
         self.img = self.original_img
-        self.rect = self.img.get_rect(bottomright=(pygame.display.get_surface().get_width(), self.background_y + 30))
+        self.rect = self.img.get_rect(bottomright=(pygame.display.get_surface().get_width(), self.background_y + 50 ))
         self.speed_x = 5
 
     def move(self):

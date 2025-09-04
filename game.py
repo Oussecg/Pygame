@@ -12,3 +12,9 @@ class Game:
         self.player = Player(self.background_rect.y)
         self.bird = Bird(self.player.rect.y)
         self.clock = pygame.time.Clock()
+
+    def check_collision(self):
+        if self.player.rect.colliderect(self.bird.rect):
+            pygame.quit()
+            print("Game Over")
+            exit()
