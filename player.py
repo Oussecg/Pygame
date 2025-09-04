@@ -4,7 +4,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, background_y):
         super().__init__()
         self.background_y = background_y
-        self.original_img = pygame.image.load('assets/sprite.png')
+        self.original_img = pygame.image.load('assets/sprite.png').convert_alpha()
         self.original_img = pygame.transform.scale(self.original_img, (50, 50))
         self.img = self.original_img
         self.angle = 0
@@ -12,8 +12,8 @@ class Player(pygame.sprite.Sprite):
         self.initial_y = self.background_y
         self.speed_x = 5
         self.speed_y = 5
-        self.jump_strength = 5
-        self.gravity_power = 5
+        self.jump_strength = 10
+        self.gravity_power = 10
         self.jump_finished = True
         self.on_jump = False
 
@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
     def jump(self):
         self.jump_finished = False
         if self.on_jump:
-            if self.rect.top >= self.initial_y - 155:
+            if self.rect.top >= self.initial_y - 180:
                 self.rect.y -= self.jump_strength
             else:
                 self.on_jump = False

@@ -16,7 +16,9 @@ while running:
     # RENDER YOUR GAME HERE
     game.screen.blit(game.background, (game.background_rect.x, game.background_rect.y))
     game.screen.blit(game.player.img, game.player.rect)
+    game.screen.blit(game.bird.img, game.bird.rect)
     game.player.update()
+    game.bird.update()
 
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
